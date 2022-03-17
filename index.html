@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>PKI Playground</title>
+  </head>
+  <body onload="generateKeys()">
+    <script src="javascript/openpgp.min.js"></script>
+    <script src="javascript/generateKeys.js"></script>
+    <script src="javascript/encryptMessage.js"></script>
+    <script src="javascript/decryptMessage.js"></script>
+
+    <div class="container">
+      <figure class="text-center">
+        <h1>PKI Playground</h1>
+      </figure>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <figure class="text-center">
+            <button type="button" onclick="generateKeys()">Generate new keys</button>
+          </figure>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <figure>
+            <blockquote class="blockquote">
+            <p>Public key</p>
+            </blockquote>
+            <textarea disabled readonly class="form-control" id="public-key" rows="5"></textarea>
+          </figure>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <figure>
+            <blockquote class="blockquote">
+            <p>Private key</p>
+            </blockquote>
+            <textarea disabled readonly class="form-control" id="private-key" rows="5"></textarea>
+          </figure>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="message" class="form-label">Message to encript</label>
+        <input class="form-control" id="message" value="Hello world!">
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <button type="button" disabled onclick="encryptMessage()" id="encrypt">Encrypt</button>
+        </div>
+        <div class="col-sm-3">
+          <button type="button" disabled onclick="encryptMessage(true)" id="encrypt-and-sign">Encrypt and sign</button>
+        </div>
+      </div>
+      <div class="row">
+        <figure>
+          <blockquote class="blockquote">
+          <p>Encrypted message</p>
+          </blockquote>
+          <textarea disabled readonly class="form-control" id="encrypted-message" rows="3"></textarea>
+        </figure>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <button type="button" onclick="decryptMessage()" id="decrypt-message">Decrypt</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3">
+          <label for="message" class="form-label">Decrypted message</label>
+          <input disabled readonly class="form-control" id="decrypted-message">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-lg-2">
+          <figure>
+            <blockquote class="blockquote">
+            <p>Signature</p>
+            </blockquote>
+          </figure>
+        </div>
+        <div class="col-sm-4 col-lg-3">
+          <div class="form-check">
+            <input class="form-check-input" disabled readonly type="checkbox" value="" id="signature-verified">
+            <label class="form-check-label" for="flexCheckDefault">
+              Is verified
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <textarea disabled readonly class="form-control" id="signature" rows="10"></textarea>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
